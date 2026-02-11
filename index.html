@@ -9,7 +9,6 @@
   <meta property="og:image" content="https://indisohari.github.io/invitation-v2/main.jpg" />
   <meta property="og:type" content="website" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
   <style>
@@ -17,35 +16,34 @@
     html, body {
       margin: 0; padding: 0; width: 100%; 
       background: #ffffff; 
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; /* 폰트 변경 */
-      color: #1a1a1a; /* 완전 검정보다 살짝 부드러운 먹색 */
-      -webkit-font-smoothing: antialiased; /* 글씨 렌더링 부드럽게 */
+      /* 모든 폰트를 프리텐다드(고딕)로 통일 */
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; 
+      color: #1a1a1a; 
+      -webkit-font-smoothing: antialiased;
     }
     .wrap { max-width: 500px; margin: 0 auto; padding: 0; box-sizing: border-box; overflow-x: hidden; }
     
-    /* 2. 애니메이션 효과 (Fade Up) */
+    /* 애니메이션 효과 (Fade Up) */
     .fade-up { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
     /* 섹션 스타일 */
     .section {
-      padding: 50px 24px; /* 여백을 조금 더 여유롭게 */
+      padding: 50px 24px; 
       text-align: center;
       position: relative;
     }
-    /* 구분선을 아주 얇고 연하게 처리하여 세련미 강조 */
+    /* 구분선: 아주 얇고 연하게 */
     .section::after {
       content: ""; display: block; width: 40px; height: 1px; background: #eee;
       margin: 50px auto 0; 
     }
-    .section:last-child::after { display: none; } /* 마지막은 선 없음 */
+    .section:last-child::after { display: none; } 
 
-    /* 타이포그래피 */
-    .font-serif { font-family: 'Nanum Myeongjo', serif; }
-    
+    /* 타이포그래피 (고딕 통일) */
     h1 { 
-      font-family: 'Nanum Myeongjo', serif;
-      font-size: 23px; margin: 0 0 10px; 
+      font-size: 22px; margin: 0 0 10px; 
+      font-weight: 700; /* 굵게 */
       letter-spacing: -0.5px; line-height: 1.4; color: #111; word-break: keep-all;
     }
     h2 { 
@@ -56,7 +54,7 @@
     }
     .muted { color:#666; font-size: 14px; line-height: 1.6; font-weight: 400; }
 
-    /* 버튼 스타일 (v1 유지) */
+    /* 버튼 스타일 */
     .row { display: flex; gap: 8px; margin-top: 15px; }
     .btn { 
       flex: 1; padding: 13px 0; border-radius: 8px; border: 1px solid #eee; 
@@ -87,13 +85,13 @@
       filter: brightness(1.05) contrast(1.02) sepia(0.08) saturate(0.9);
     }
 
-    /* 혼주 이름 */
+    /* 혼주 이름 (고딕체 적용) */
     .names-area { text-align: right; display: inline-block; line-height: 2.4; }
     .name-row { display: flex; align-items: center; justify-content: flex-end; }
-    .parents { font-size: 15px; color: #444; }
+    .parents { font-size: 15px; color: #444; font-weight: 400; }
     .parents b { color: #111; font-weight: 700; }
-    .relation { font-size: 13px; color: #999; margin: 0 10px 0 3px; font-weight: 300; }
-    .me { font-size: 18px; font-weight: 700; color: #000; font-family: 'Nanum Myeongjo', serif; }
+    .relation { font-size: 13px; color: #999; margin: 0 10px 0 3px; font-weight: 400; }
+    .me { font-size: 18px; font-weight: 700; color: #000; } /* 고딕체 볼드 */
     .me-emoji { font-size: 16px; margin-right: 6px; }
 
     /* 일시/장소 그리드 */
@@ -122,10 +120,10 @@
     .btn-copy { padding: 5px 12px; font-size: 11px; border: 1px solid #ddd; background: #fff; border-radius: 20px; cursor: pointer; color: #555; transition: all 0.2s; }
     .btn-copy:active { background: #f0f0f0; color: #333; }
 
-    /* 시(Poem) 디테일 업 */
+    /* 시(Poem) - 고딕체 적용, 행간 조절 */
     .poem { 
-      white-space: pre-line; line-height: 2.4; font-size: 15px; color: #333; 
-      font-family: 'Nanum Myeongjo', serif; /* 시는 명조체가 감성적입니다 */
+      white-space: pre-line; line-height: 2.3; font-size: 15px; color: #333; 
+      font-weight: 400; letter-spacing: -0.2px;
       margin-top: 10px;
     }
     
@@ -142,7 +140,7 @@
     <div class="section fade-up" style="padding-top: 60px;">
       <div style="font-size: 26px; margin-bottom: 15px;">💍</div>
       
-      <div style="font-size: 14px; color: #8c5b5b; letter-spacing: 3px; font-weight: 700; margin-bottom: 15px; font-family: 'Pretendard', sans-serif;">2026 / 05 / 23</div>
+      <div style="font-size: 14px; color: #8c5b5b; letter-spacing: 3px; font-weight: 700; margin-bottom: 15px;">2026 / 05 / 23</div>
       
       <h1>
         신동윤 · 신지연<br>
@@ -213,7 +211,7 @@
 
     <div class="section fade-up" id="rsvpSection">
       <h2 style="font-size: 17px; white-space: nowrap; margin-bottom: 35px; justify-content: center;">
-        ✍️ 정성껏 준비하겠습니다.<br>참석 정보를 알려주세요.
+        ✍️ 정성껏 준비하겠습니다. 참석 정보를 알려주세요.
       </h2>
       
       <div style="text-align: left;">
