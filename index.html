@@ -19,6 +19,7 @@
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
       color: #1a1a1a; 
       -webkit-font-smoothing: antialiased;
+      /* [개선 6] 아이폰 하단 안전영역 대응 */
       padding-bottom: env(safe-area-inset-bottom);
     }
     .wrap { max-width: 500px; margin: 0 auto; padding: 0; box-sizing: border-box; overflow-x: hidden; }
@@ -41,16 +42,14 @@
       font-size: 22px; margin: 0 0 10px; font-weight: 700;
       letter-spacing: -0.5px; line-height: 1.4; color: #111; word-break: keep-all;
     }
-    /* 일시/장소 라벨 스타일 */
     h2 { 
       font-size: 17px; margin: 0; color: #111; font-weight: 700; letter-spacing: -0.3px;
-      display: flex; align-items: center; justify-content: flex-start;
-      flex-shrink: 0; /* 라벨이 찌그러지지 않게 고정 */
+      display: flex; align-items: center; justify-content: flex-start; min-width: 50px;
     }
     .muted { color:#666; font-size: 14px; line-height: 1.6; font-weight: 400; }
 
     /* 버튼 스타일 */
-    .row { display: flex; gap: 8px; margin-top: 20px; }
+    .row { display: flex; gap: 8px; margin-top: 15px; }
     .btn { 
       flex: 1; padding: 13px 0; border-radius: 8px; border: 1px solid #eee; 
       background: #fff; color: #333; font-size: 13px; font-weight: 500; 
@@ -86,19 +85,12 @@
     .me { font-size: 18px; font-weight: 700; color: #000; }
     .me-emoji { font-size: 16px; margin-right: 6px; }
 
-    /* [핵심 수정] 일시/장소 덩어리 중앙 정렬 스타일 */
-    .info-grid { 
-      display: inline-flex; /* 내용을 감싸는 블록으로 만듦 */
-      align-items: flex-start; /* 상단 기준 정렬 */
-      text-align: left; /* 내부 텍스트는 왼쪽 정렬 */
-      gap: 15px; /* 라벨과 내용 사이 간격 */
-      margin: 0 auto; /* 블록 자체를 중앙 정렬 */
-      max-width: 100%;
-    }
+    /* 일시/장소 */
+    .info-grid { display: flex; align-items: flex-start; text-align: left; gap: 15px; }
     .info-content { text-align: left; }
     .info-title { font-weight: 700; font-size: 16px; color: #111; line-height: 1.3; margin-bottom: 5px; }
 
-    /* 입력폼 */
+    /* 입력폼 (폰트 크기 상향) */
     input, select { 
       width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid #ddd; 
       font-size: 16px; margin-bottom: 30px; background: transparent; outline: none; border-radius: 0;
@@ -180,7 +172,7 @@
         </a>
       </div>
 
-      <div style="height: 45px;"></div>
+      <div style="height: 40px;"></div>
 
       <div class="info-grid">
         <h2>📍 장소</h2>
@@ -336,6 +328,7 @@
       initLinks();
     });
 
+    // [개선 2] 이름 입력 제한 완화 (영어, 공백, 하이픈 등 허용)
     document.getElementById('name').addEventListener('input', function(e) {
       e.target.value = e.target.value.replace(/[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z\s\-\.]/g, '');
     });
@@ -369,6 +362,7 @@
       var btn = document.getElementById("submitBtn");
       var phoneRegex = /^01[016789]-\d{3,4}-\d{4}$/;
 
+      // [개선 2] 유효성 검사 완화 (글자수 제한 1글자 이상으로 변경)
       if (name.length < 1) return toast("성함을 입력해 주세요");
       if (!phoneRegex.test(phone)) return toast("연락처를 정확히 입력해 주세요");
       if (!count) return toast("참석 인원을 선택해 주세요");
@@ -384,7 +378,7 @@
         body: JSON.stringify({ name: name, phone: phone, guestCount: count })
       })
       .then(response => {
-        toast("소중한 정보가 접수되었습니다");
+        toast("소중한 정보가 접수되었습니다"); // 메시지 톤 앤 매너 조절
         document.getElementById("name").value = "";
         document.getElementById("phone").value = "";
         document.getElementById("guestCount").selectedIndex = 0;
@@ -392,12 +386,14 @@
         btn.disabled = false; btn.textContent = "참석 소식 전하기";
       })
       .catch(error => {
-        alert("오류가 발생했습니다: " + error);
+        alert("일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
         btn.disabled = false; btn.textContent = "참석 소식 전하기";
       });
     }
 
     function initLinks() {
+      // [개선 3] 지도 정확도 개선 (Place ID 사용)
+      // 남산예술원 웨딩홀 네이버/카카오 고유 링크
       document.getElementById("kakaoNav").href = "https://place.map.kakao.com/8246399";
       document.getElementById("naverNav").href = "https://map.naver.com/v5/entry/place/11626294"; 
       
