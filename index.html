@@ -192,4 +192,231 @@
           주소복사
         </button>
         <a id="kakaoNav" class="btn btn-kakao" target="_blank" rel="noopener noreferrer">
-          <svg class="icon" viewBox="0 0 24 24" style="width:15px; height:15px; fill:#3C1E1E;"><path d="M12 3C7.029 3 3 6.129 3 10c0 2.5 1.708 4.683 4.287 5.768l-.944 3.454c-.1.366.11.72.443.834.12.04.245.045.362
+          <svg class="icon" viewBox="0 0 24 24" style="width:15px; height:15px; fill:#3C1E1E;"><path d="M12 3C7.029 3 3 6.129 3 10c0 2.5 1.708 4.683 4.287 5.768l-.944 3.454c-.1.366.11.72.443.834.12.04.245.045.362.016l4.053-2.693c.264.017.531.026.799.026 4.971 0 9-3.129 9-7s-4.029-7-9-7z"/></svg>
+          카카오맵
+        </a>
+      </div>
+    </div>
+
+    <div class="section fade-up" id="rsvpSection">
+      <h2 style="font-size: 17px; white-space: nowrap; margin-bottom: 35px; justify-content: center;">
+        ✍️ 정성껏 준비하겠습니다. 참석 정보를 알려주세요.
+      </h2>
+      
+      <div style="text-align: left;">
+        <span class="label">📛 성함</span>
+        <input id="name" placeholder="참석하시는 분의 성함" maxlength="20" />
+        
+        <span class="label">📱 휴대폰 번호</span>
+        <input id="phone" type="tel" placeholder="010-0000-0000" maxlength="13" />
+        
+        <span class="label">👨‍👩‍👧‍👦 참석 인원 (본인 포함)</span>
+        <select id="guestCount" style="color: #666;">
+          <option value="" disabled selected>인원 선택</option>
+          <option value="1">1명 (혼자 참석합니다)</option>
+          <option value="2">2명 (동반인 1명)</option>
+          <option value="3">3명 (동반인 2명)</option>
+          <option value="4">4명 (동반인 3명)</option>
+          <option value="5">5명 (동반인 4명)</option>
+          <option value="6">6명 (동반인 5명)</option>
+          <option value="7">7명 (동반인 6명)</option>
+          <option value="8">8명 (동반인 7명)</option>
+          <option value="9">9명 (동반인 8명)</option>
+          <option value="10">10명 이상</option>
+        </select>
+        
+        <button id="submitBtn" class="btn-primary" onclick="submitRsvp()">참석 소식 전하기</button>
+        <p class="privacy-notice">
+          * 전달해주신 정보는 예식 참석 인원 파악 및 식사 준비를 위해서만 사용되며,<br>예식 종료 후 안전하게 파기됩니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="section fade-up">
+      <div class="poem">
+        신중한 지연은 느긋합니다.
+        빠릿한 동윤은 성급합니다.
+        속도가 다른 둘이 만났습니다.
+        결혼 준비 중에 참 많이도 아웅다웅했습니다.
+
+        그녀는 강아지를 좋아합니다.
+        그는 고양이를 키우고 있습니다.
+        기꺼이 고양이를 가족으로 맞이합니다.
+
+        다행히 음식을 가리진 않습니다.
+        이왕이면 상대가 좋아하는 걸 함께 즐깁니다.
+        늘 메뉴 선택을 미루는 부작용이 생깁니다.
+
+        다행히 서로 좋아하는 취미가 같습니다.
+        테니스를 치다가 만났습니다.
+        함께 땀 흘리며 호흡하는 재미가 있습니다.
+
+        삶의 방향도,
+        사랑의 방식도 다른 둘이 만났습니다.
+
+        “자유는 ‘자기의 이유’로 살아가는 것”이라고 했습니다.
+        너무나 다른 상대방의 존재를
+        자기의 이유로 받아들이기로 했습니다.
+        서로가 자유할 수 있는 가정을 이루고자 합니다.
+
+        희로애락을 겪는 모든 과정에서
+        외롭지 않도록 곁을 지키겠단 다짐,
+        여러분과 함께 이 약속을 나누고 싶습니다.
+
+        함께해 주셔서
+        이 약속의 증인이 되어주시길 바랍니다.
+        감사합니다.
+      </div>
+    </div>
+
+    <div class="section fade-up">
+      <div class="gallery-grid">
+        <img src="1.jpg" onclick="openModal(this.src)" class="gallery-img" loading="lazy">
+        <img src="2.jpg" onclick="openModal(this.src)" class="gallery-img" loading="lazy">
+        <img src="3.jpg" onclick="openModal(this.src)" class="gallery-img" loading="lazy">
+        <img src="4.jpg" onclick="openModal(this.src)" class="gallery-img" loading="lazy">
+        <img src="5.jpg" onclick="openModal(this.src)" class="gallery-img" loading="lazy">
+        <img src="6.jpg" onclick="openModal(this.src)" class="gallery-img" loading="lazy">
+        <img src="7.jpg" onclick="openModal(this.src)" class="gallery-img" loading="lazy">
+        <img src="8.jpg" onclick="openModal(this.src)" class="gallery-img" loading="lazy">
+        <img src="9.jpg" onclick="openModal(this.src)" class="gallery-img" loading="lazy">
+      </div>
+      
+      <a href="https://photos.app.goo.gl/mJmxhc6hSy7y4ujA9" target="_blank" class="btn" style="width: auto; display: inline-flex; margin-top: 25px; padding: 11px 24px; border: 1px solid #ccc; color: #444;" rel="noopener noreferrer">
+        더 많은 사진 보기
+        <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; margin-left: 5px; fill: none; stroke: currentColor; stroke-width: 2;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>
+    </div>
+
+    <div class="section fade-up" style="text-align: left; padding-bottom: 70px;">
+      <h2 style="margin-bottom: 25px; justify-content: center; font-size: 18px;">🙏 축하와 응원, 감사히 받겠습니다</h2>
+      
+      <div class="acc-row">
+        <span class="acc-label">신랑</span>
+        <div class="acc-text"><b>신동윤</b> 신한 110-515-863488</div>
+        <button class="btn-copy" onclick="copyTextDirect('110515863488')">복사</button>
+      </div>
+
+      <div class="acc-row">
+        <span class="acc-label">신부</span>
+        <div class="acc-text"><b>신지연</b> 국민 512-602-01-208841</div>
+        <button class="btn-copy" onclick="copyTextDirect('51260201208841')">복사</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="modal-close">×</span>
+    <img class="modal-img" id="fullImage" onclick="event.stopPropagation()">
+  </div>
+  <div id="toast" class="toast"></div>
+
+  <script>
+    var EVENT = { title: "신지연·신동윤 결혼식", startISO: "20260523T183000", endISO: "20260523T203000", locationName: "남산예술원 웨딩홀", address: "서울특별시 용산구 소월로 375" };
+
+    document.addEventListener("DOMContentLoaded", function() {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) { 
+          if (entry.isIntersecting) entry.target.classList.add("visible"); 
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+
+      document.getElementById('guestCount').addEventListener('change', function() {
+        this.style.color = '#333';
+      });
+      initLinks();
+    });
+
+    // [개선 2] 이름 입력 제한 완화 (영어, 공백, 하이픈 등 허용)
+    document.getElementById('name').addEventListener('input', function(e) {
+      e.target.value = e.target.value.replace(/[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z\s\-\.]/g, '');
+    });
+    
+    document.getElementById('phone').addEventListener('input', function (e) {
+      var val = e.target.value.replace(/[^0-9]/g, '');
+      var result = '';
+      if (val.length < 4) result = val;
+      else if (val.length < 7) result = val.substr(0, 3) + '-' + val.substr(3);
+      else if (val.length < 11) result = val.substr(0, 3) + '-' + val.substr(3, 3) + '-' + val.substr(6);
+      else result = val.substr(0, 3) + '-' + val.substr(3, 4) + '-' + val.substr(7);
+      e.target.value = result;
+    });
+
+    function toast(msg) {
+      var el = document.getElementById("toast");
+      el.textContent = msg; el.style.display = "block";
+      setTimeout(function () { el.style.display = "none"; }, 2000);
+    }
+
+    function copyAddress(txt) { navigator.clipboard && window.isSecureContext ? navigator.clipboard.writeText(txt).then(() => toast("주소가 복사되었습니다")).catch(() => fallbackCopyAddress(txt)) : fallbackCopyAddress(txt); }
+    function fallbackCopyAddress(txt) { var t = document.createElement('textarea'); t.value = txt; t.style.position = 'fixed'; t.style.left = '-9999px'; document.body.appendChild(t); t.focus(); t.select(); try { document.execCommand('copy'); toast("주소가 복사되었습니다"); } catch(e) { toast("복사에 실패했습니다"); } document.body.removeChild(t); }
+    
+    function copyTextDirect(txt) { navigator.clipboard && window.isSecureContext ? navigator.clipboard.writeText(txt).then(() => toast("계좌번호가 복사되었습니다")).catch(() => fallbackCopyText(txt)) : fallbackCopyText(txt); }
+    function fallbackCopyText(txt) { var t = document.createElement('textarea'); t.value = txt; t.style.position = 'fixed'; t.style.left = '-9999px'; document.body.appendChild(t); t.focus(); t.select(); try { document.execCommand('copy'); toast("계좌번호가 복사되었습니다"); } catch(e) { toast("복사에 실패했습니다"); } document.body.removeChild(t); }
+
+    function submitRsvp() {
+      var name = document.getElementById("name").value.trim();
+      var phone = document.getElementById("phone").value.trim();
+      var count = document.getElementById("guestCount").value;
+      var btn = document.getElementById("submitBtn");
+      var phoneRegex = /^01[016789]-\d{3,4}-\d{4}$/;
+
+      // [개선 2] 유효성 검사 완화 (글자수 제한 1글자 이상으로 변경)
+      if (name.length < 1) return toast("성함을 입력해 주세요");
+      if (!phoneRegex.test(phone)) return toast("연락처를 정확히 입력해 주세요");
+      if (!count) return toast("참석 인원을 선택해 주세요");
+
+      btn.disabled = true; btn.textContent = "전송 중...";
+
+      var scriptUrl = "https://script.google.com/macros/s/AKfycbxl98bvkRMoE4K4MJ7sK3zO_y1zKC3Gvfn1LXs9bwYES3W9xE88EltCCghB30cEwiKi/exec"; 
+
+      fetch(scriptUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ name: name, phone: phone, guestCount: count })
+      })
+      .then(response => {
+        toast("소중한 정보가 접수되었습니다"); // 메시지 톤 앤 매너 조절
+        document.getElementById("name").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("guestCount").selectedIndex = 0;
+        document.getElementById("guestCount").style.color = '#666';
+        btn.disabled = false; btn.textContent = "참석 소식 전하기";
+      })
+      .catch(error => {
+        alert("일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+        btn.disabled = false; btn.textContent = "참석 소식 전하기";
+      });
+    }
+
+    function initLinks() {
+      // [개선 3] 지도 정확도 개선 (Place ID 사용)
+      // 남산예술원 웨딩홀 네이버/카카오 고유 링크
+      document.getElementById("kakaoNav").href = "https://place.map.kakao.com/8246399";
+      document.getElementById("naverNav").href = "https://map.naver.com/v5/entry/place/11626294"; 
+      
+      var gcal = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(EVENT.title) + "&dates=" + EVENT.startISO + "/" + EVENT.endISO + "&location=" + encodeURIComponent(EVENT.locationName);
+      document.getElementById("gcalLink").href = gcal;
+      var icsData = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nBEGIN:VEVENT\r\nSUMMARY:" + EVENT.title + "\r\nDTSTART:" + EVENT.startISO + "\r\nDTEND:" + EVENT.endISO + "\r\nLOCATION:" + EVENT.locationName + "\r\nEND:VEVENT\r\nEND:VCALENDAR";
+      var blob = new Blob([icsData], { type: "text/calendar;charset=utf-8" });
+      document.getElementById("icsLink").href = URL.createObjectURL(blob);
+      document.getElementById("icsLink").download = "wedding.ics";
+    }
+    
+    function openModal(src) {
+      var modal = document.getElementById("imageModal");
+      var modalImg = document.getElementById("fullImage");
+      modal.style.display = "flex";
+      modalImg.src = src;
+      document.body.style.overflow = "hidden";
+    }
+    function closeModal() {
+      var modal = document.getElementById("imageModal");
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  </script>
+</body>
+</html>
