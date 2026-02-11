@@ -12,6 +12,9 @@
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
   <style>
+    /* [버그 수정 1] 모든 요소의 크기 계산을 '테두리 포함'으로 통일 */
+    * { box-sizing: border-box; }
+
     /* 기본 설정 */
     html, body {
       margin: 0; padding: 0; width: 100%; 
@@ -19,10 +22,11 @@
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
       color: #1a1a1a; 
       -webkit-font-smoothing: antialiased;
-      /* [개선 6] 아이폰 하단 안전영역 대응 */
       padding-bottom: env(safe-area-inset-bottom);
+      /* [버그 수정 2] 가로 스크롤 강제 차단 */
+      overflow-x: hidden;
     }
-    .wrap { max-width: 500px; margin: 0 auto; padding: 0; box-sizing: border-box; overflow-x: hidden; }
+    .wrap { max-width: 500px; margin: 0 auto; padding: 0; overflow-x: hidden; min-height: 100vh; }
     
     /* 애니메이션 */
     .fade-up { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -90,7 +94,7 @@
     .info-content { text-align: left; }
     .info-title { font-weight: 700; font-size: 16px; color: #111; line-height: 1.3; margin-bottom: 5px; }
 
-    /* 입력폼 (폰트 크기 상향) */
+    /* 입력폼 */
     input, select { 
       width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid #ddd; 
       font-size: 16px; margin-bottom: 30px; background: transparent; outline: none; border-radius: 0;
@@ -199,16 +203,16 @@
     </div>
 
     <div class="section fade-up" id="rsvpSection">
-      <h2 style="font-size: 17px; white-space: nowrap; margin-bottom: 35px; justify-content: center;">
+      <h2 style="font-size: 17px; margin-bottom: 35px; justify-content: center; word-break: keep-all;">
         ✍️ 정성껏 준비하겠습니다. 참석 정보를 알려주세요.
       </h2>
       
       <div style="text-align: left;">
         <span class="label">📛 성함</span>
-        <input id="name" placeholder="참석하시는 분의 성함" maxlength="20" />
+        <input id="name" placeholder="참석하시는 분의 성함" maxlength="20" autocomplete="name" />
         
         <span class="label">📱 휴대폰 번호</span>
-        <input id="phone" type="tel" placeholder="010-0000-0000" maxlength="13" />
+        <input id="phone" type="tel" placeholder="010-0000-0000" maxlength="13" autocomplete="tel" />
         
         <span class="label">👨‍👩‍👧‍👦 참석 인원 (본인 포함)</span>
         <select id="guestCount" style="color: #666;">
@@ -226,7 +230,9 @@
         </select>
         
         <button id="submitBtn" class="btn-primary" onclick="submitRsvp()">참석 소식 전하기</button>
-        
+        <p class="privacy-notice">
+          * 전달해주신 정보는 예식 참석 인원 파악 및 식사 준비를 위해서만 사용되며,<br>예식 종료 후 안전하게 파기됩니다.
+        </p>
       </div>
     </div>
 
@@ -326,7 +332,6 @@
       initLinks();
     });
 
-    // [개선 2] 이름 입력 제한 완화 (영어, 공백, 하이픈 등 허용)
     document.getElementById('name').addEventListener('input', function(e) {
       e.target.value = e.target.value.replace(/[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z\s\-\.]/g, '');
     });
@@ -360,7 +365,6 @@
       var btn = document.getElementById("submitBtn");
       var phoneRegex = /^01[016789]-\d{3,4}-\d{4}$/;
 
-      // [개선 2] 유효성 검사 완화 (글자수 제한 1글자 이상으로 변경)
       if (name.length < 1) return toast("성함을 입력해 주세요");
       if (!phoneRegex.test(phone)) return toast("연락처를 정확히 입력해 주세요");
       if (!count) return toast("참석 인원을 선택해 주세요");
@@ -376,7 +380,7 @@
         body: JSON.stringify({ name: name, phone: phone, guestCount: count })
       })
       .then(response => {
-        toast("소중한 정보가 접수되었습니다"); // 메시지 톤 앤 매너 조절
+        toast("소중한 정보가 접수되었습니다");
         document.getElementById("name").value = "";
         document.getElementById("phone").value = "";
         document.getElementById("guestCount").selectedIndex = 0;
@@ -384,18 +388,16 @@
         btn.disabled = false; btn.textContent = "참석 소식 전하기";
       })
       .catch(error => {
-        alert("일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+        alert("오류가 발생했습니다: " + error);
         btn.disabled = false; btn.textContent = "참석 소식 전하기";
       });
     }
 
     function initLinks() {
-      // [개선 3] 지도 정확도 개선 (Place ID 사용)
-      // 남산예술원 웨딩홀 네이버/카카오 고유 링크
       document.getElementById("kakaoNav").href = "https://place.map.kakao.com/8246399";
       document.getElementById("naverNav").href = "https://map.naver.com/v5/entry/place/11626294"; 
       
-      var gcal = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(EVENT.title) + "&dates=" + EVENT.startISO + "/" + EVENT.endISO + "&location=" + encodeURIComponent(EVENT.locationName);
+      var gcal = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(EVENT.title) + "&dates=" + EVENT.startISO + "/" + EVENT.endISO + "&location=" + encodeURIComponent(EVENT.locationName) + "&ctz=Asia/Seoul";
       document.getElementById("gcalLink").href = gcal;
       var icsData = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nBEGIN:VEVENT\r\nSUMMARY:" + EVENT.title + "\r\nDTSTART:" + EVENT.startISO + "\r\nDTEND:" + EVENT.endISO + "\r\nLOCATION:" + EVENT.locationName + "\r\nEND:VEVENT\r\nEND:VCALENDAR";
       var blob = new Blob([icsData], { type: "text/calendar;charset=utf-8" });
