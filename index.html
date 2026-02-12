@@ -16,7 +16,8 @@
     * { box-sizing: border-box; }
 
     /* 기본 설정 */
-html, body {
+/* [수정됨] html과 body 스타일 분리 */
+    html {
       margin: 0; padding: 0; width: 100%; 
       background: #ffffff; 
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
@@ -24,15 +25,24 @@ html, body {
       -webkit-font-smoothing: antialiased;
       padding-bottom: env(safe-area-inset-bottom);
       
-      /* [버그 수정 2] 가로 스크롤 강제 차단 */
-      overflow-x: hidden;
-
-      /* [추가] 스크롤바 숨기기 (파이어폭스, IE, 엣지) */
+      /* 중요: 아이폰 스크롤 버그 해결을 위해 html에는 overflow 속성을 제거함 */
+      
+      /* 스크롤바 숨기기 (파이어폭스, IE, 엣지) */
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
 
-    /* [추가] 스크롤바 숨기기 (크롬, 사파리, 오페라) */
+    body {
+      margin: 0; padding: 0; width: 100%;
+      
+      /* 가로 스크롤 방지는 body에만 적용 */
+      overflow-x: hidden;
+      
+      /* 아이폰 부드러운 스크롤 적용 */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* 스크롤바 숨기기 (크롬, 사파리, 오페라) */
     html::-webkit-scrollbar, 
     body::-webkit-scrollbar {
       display: none;
