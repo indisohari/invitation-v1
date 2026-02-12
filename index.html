@@ -16,18 +16,29 @@
     * { box-sizing: border-box; }
 
     /* 기본 설정 */
-    html, body {
+html, body {
       margin: 0; padding: 0; width: 100%; 
       background: #ffffff; 
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
       color: #1a1a1a; 
       -webkit-font-smoothing: antialiased;
       padding-bottom: env(safe-area-inset-bottom);
+      
       /* [버그 수정 2] 가로 스크롤 강제 차단 */
       overflow-x: hidden;
+
+      /* [추가] 스크롤바 숨기기 (파이어폭스, IE, 엣지) */
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
-    .wrap { max-width: 500px; margin: 0 auto; padding: 0; overflow-x: hidden; min-height: 100vh; }
-    
+
+    /* [추가] 스크롤바 숨기기 (크롬, 사파리, 오페라) */
+    html::-webkit-scrollbar, 
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .wrap { max-width: 500px; margin: 0 auto; padding: 0; overflow-x: hidden; min-height: 100vh; }    
     /* 애니메이션 */
     .fade-up { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
